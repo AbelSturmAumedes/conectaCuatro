@@ -21,18 +21,33 @@ public class Client {
         }
 
         String line = "";
-        String lines = "";
+        String lines;
 
         while(!line.equals("Stop")) {
+            lines = "";
             try {
-                line = this.input.readLine();
-                this.out.writeUTF(line);
+                System.out.println();
+                for(int i = 1; i <= 7; i++ ){
+                        System.out.print(" " + i);
+                }
+                for(int i = 6; i != 0; i--){
+                    System.out.println();
+                    for(int j = 7;j != 0; j--){
+                        System.out.print(" " + this.in.readChar());
+                    }
+                }
+                System.out.println();
+                while(!lines.equals("Bien") && !lines.contains("guanyat")){
+                    line = this.input.readLine();
+                    this.out.writeUTF(line);
 
-                lines = this.in.readUTF();
-                System.out.println("S: " + lines);
+                    lines = this.in.readUTF();
+                    System.out.println("S: " + lines);
+                }
+                if (lines.contains("guanyat"))return;
 
             } catch (IOException e) {
-                System.out.println(e);
+                System.out.println("Che vato, q paso?");
             }
         }
 
@@ -47,6 +62,6 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        new conectaCuatro.Client("10.94.255.167", 6666);
+        new conectaCuatro.Client("127.0.0.1", 6666);
     }
 }
