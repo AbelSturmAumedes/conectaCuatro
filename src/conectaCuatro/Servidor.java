@@ -41,27 +41,27 @@ public class Servidor {
 
             String lineP1 = "";
             String lineP2 = "";
-            inicialitzarConecta('·');
+            inicialitzarConecta('.');
 
             while(!lineP1.equals("Stop") || !lineP2.equals("Stop"))  {
 
                 try {
-                    mostrarCamp();
 
+                    mostrarCampP1();
                     while(true){
                         lineP1 = this.inP1.readUTF();
                         if (lineP1.equals("Stop")) break;
                         if (!verificarEntrada(lineP1, 'X')) continue;
                         colocarFicha(Integer.parseInt(lineP1), 'X');
                         if (comprobarVictoria('X')){
-                         this.outP1.writeUTF("El jugador X ha guanyat");
+                            this.outP1.writeUTF("El jugador X ha guanyat");
                          break;
                         }
-                        this.outP1.writeUTF("Bien");
+                        this.outP1.writeUTF("Espera al teu torn...");
                         break;
                     }
                     if (comprobarVictoria('X') || lineP1.equals("Stop")){
-                        mostrarCamp();
+                        mostrarCampP1();
                         break;
                     }
                    /* while(true){
@@ -137,7 +137,8 @@ public class Servidor {
             }
 
         }catch (NumberFormatException | IOException e ){
-            this.outP1.writeUTF("Escribe numero ente 1 y 7");
+            if(caracter == 'X') this.outP1.writeUTF("Escribe numero ente 1 y 7");
+            else  this.outP2.writeUTF("Escribe numero ente 1 y 7");
             return false;
         }
         return true;

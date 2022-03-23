@@ -3,13 +3,13 @@ package conectaCuatro;
 import java.io.*;
 import java.net.Socket;
 
-public class Client {
+public class Client2 {
     private Socket socket;
     private BufferedReader input;
     private DataOutputStream out;
     private DataInputStream in;
 
-    public Client(String address, int port) {
+    public Client2(String address, int port) {
         try {
             this.socket = new Socket(address, port);
             System.out.println("Connected");
@@ -26,11 +26,8 @@ public class Client {
         while(!line.equals("Stop")) {
             lines = "";
             try {
-                System.out.println();
-                for(int i = 1; i <= 7; i++ ){
-                        System.out.print(" " + i);
-                }
-                for(int i = 6; i != 0; i--){
+
+                for(int i = 7; i != 0; i--){
                     System.out.println();
                     for(int j = 7;j != 0; j--){
                         System.out.print(" " + this.in.readChar());
@@ -48,7 +45,7 @@ public class Client {
                 if (lines.contains("guanyat"))return;
 
             } catch (IOException e) {
-                System.out.println("Che vato, q paso?");
+                System.out.println("");
             }
         }
 
